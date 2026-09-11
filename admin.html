@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M2U — Admin</title>
+<meta name="robots" content="noindex">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  @font-face{font-family:'NanumSquareRoundOTF';src:url('assets/fonts/NanumSquareRoundL.otf') format('opentype');font-weight:100 900;font-style:normal;font-display:swap;}
+  :root{--ac:#7698D6;--ac2:#8fabe0;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#181818;color:#ececec;font-family:"NanumSquareRoundOTF","Pretendard","Helvetica Neue",system-ui,sans-serif;line-height:1.5}
+  #app{max-width:1060px;margin:0 auto;padding:0 20px 90px}
+  .topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:14px;
+    flex-wrap:wrap;padding:14px 0;background:#141414;border-bottom:1px solid #2a2a2a}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{height:30px;width:auto;display:block}
+  .brand span{font-weight:700;letter-spacing:.03em;color:var(--ac);font-size:15px}
+  .actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .status{font-family:ui-monospace,monospace;font-size:12px;color:#8a8a8a;margin-right:4px}
+  button{cursor:pointer;font-family:inherit}
+  .ghost{background:#232323;border:1px solid #333;color:#ddd;padding:9px 13px;border-radius:8px;font-size:13px}
+  .ghost:hover{border-color:var(--ac)}
+  .primary{background:var(--ac);border:0;color:#10141c;font-weight:700;padding:10px 16px;border-radius:8px;font-size:13px}
+  .primary:hover{background:var(--ac2)}
+  .atabs{display:flex;gap:6px;margin:22px 0 18px;flex-wrap:wrap}
+  .atab{background:#202020;border:1px solid #2c2c2c;color:#aaa;padding:9px 18px;border-radius:999px;font-size:14px}
+  .atab:hover{color:#fff}
+  .atab.on{background:var(--ac);color:#10141c;border-color:var(--ac);font-weight:700}
+  .panel{display:none}
+  .ph{font-size:13px;color:#8a8a8a;font-weight:500;margin:0 0 16px;letter-spacing:.02em}
+  .fld{margin-bottom:14px}
+  .fld label{display:block;font-size:12px;color:var(--ac2);margin-bottom:6px;font-family:ui-monospace,monospace;letter-spacing:.03em}
+  input,textarea{width:100%;background:#0f0f0f;border:1px solid #2c2c2c;border-radius:8px;color:#fff;
+    padding:11px 12px;font-size:14px;font-family:inherit;outline:none}
+  input:focus,textarea:focus{border-color:var(--ac)}
+  input[type=color]{padding:4px;height:42px;cursor:pointer}
+  textarea{min-height:64px;resize:vertical;line-height:1.55}
+  .card{background:#1e1e1e;border:1px solid #2a2a2a;border-radius:12px;padding:16px;margin-bottom:14px}
+  .card h4{margin:0 0 12px;font-size:14px;color:#fff}
+  .crow{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .crow > input{flex:1;min-width:140px}
+  .crow .fld{flex:1;min-width:180px;margin-bottom:0}
+  .idx{font-family:ui-monospace,monospace;color:var(--ac);font-size:13px;min-width:30px}
+  .lblock{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
+  .lblock .ll{font-family:ui-monospace,monospace;font-size:12px;color:var(--ac2);min-width:26px;padding-top:12px}
+  .lblock input{flex:0 0 32%;min-width:120px}
+  .lblock textarea{flex:1;min-height:44px}
+  .mini{background:#2a2a2a;border:1px solid #343434;color:#ccc;border-radius:7px;padding:9px 11px;font-size:12px}
+  .mini:hover{border-color:var(--ac)}
+  .mini.del{color:#e0754f}
+  .mini.del:hover{border-color:#e0754f}
+  .add{background:#20303f;border:1px dashed #3a6ea5;color:var(--ac2);border-radius:10px;padding:13px;width:100%;font-size:14px;margin-top:6px}
+  .add:hover{background:#233848}
+  .help{color:#8a8a8a;font-size:12.5px;line-height:1.7;margin-top:26px;border-top:1px solid #2a2a2a;padding-top:16px}
+  @media(max-width:640px){ .lblock{flex-wrap:wrap} .lblock input{flex:1 1 100%} }
+</style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="assets/data.js"></script>
+  <script src="assets/admin.js"></script>
+</body>
+</html>
