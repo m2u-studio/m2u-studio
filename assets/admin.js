@@ -96,10 +96,99 @@
     });
     p.appendChild(btn('+ 회사 추가','add',function(){ model.partners.push({name:'',logo:''}); save(); renderPartners(); }));
   }
+  /* ---------- 파일 저장: 사이트 폴더에 자동 복사 ---------- */
+  var DIR=null; // 사용자가 연결한 사이트 폴더 핸들
+  function canPick(){ return typeof window.showDirectoryPicker==='function'; }
+  function connectFolder(){
+    if(!canPick()){ mark('이 브라우저는 폴더 연결 미지원 — 파일은 다운로드로 저장돼요'); return; }
+    window.showDirectoryPicker({mode:'readwrite'}).then(function(h){
+      DIR=h; mark('사이트 폴더 연결됨 ✓'); renderTracks();
+    }).catch(function(){});
+  }
+  function safeName(n){ return n.replace(/[\/\\?%*:|"'<>#]/g,'').replace(/\s+/g,'_'); }
+  function baseName(n){ return n.replace(/\.[^.]+$/,''); }
+  function kindOf(file){
+    if(/^image\//.test(file.type)||/\.(png|jpe?g|webp|gif|avif)$/i.test(file.name)) return 'covers';
+    if(/^audio\//.test(file.type)||/\.(mp3|m4a|ogg|wav|flac)$/i.test(file.name)) return 'audio';
+    return null;
+  }
+  // 파일을 assets/covers 또는 assets/audio 에 넣고 경로 문자열을 돌려줌
+  function storeFile(file, kind){
+    var name=safeName(file.name), path='assets/'+kind+'/'+name;
+    if(DIR){
+      return DIR.getDirectoryHandle('assets',{create:true})
+        .then(function(a){ return a.getDirectoryHandle(kind,{create:true}); })
+        .then(function(d){ return d.getFileHandle(name,{create:true}); })
+        .then(function(fh){ return fh.createWritable(); })
+        .then(function(w){ return Promise.resolve(w.write(file)).then(function(){ return w.close(); }); })
+        .then(function(){ mark('저장됨: '+path); return path; });
+    }
+    var url=URL.createObjectURL(file), a=el('a',{});
+    a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); },4000);
+    mark('내려받음 — '+kind+' 폴더에 넣어주세요');
+    return Promise.resolve(path);
+  }
+  function dropzone(label, accept, onFiles){
+    var z=el('div',{class:'dz'});
+    z.appendChild(el('span',{class:'dz-t'},[label]));
+    var fi=el('input',{type:'file'}); fi.accept=accept; fi.multiple=true; fi.style.display='none';
+    fi.addEventListener('change',function(){ onFiles(Array.prototype.slice.call(fi.files)); fi.value=''; });
+    z.appendChild(fi);
+    z.addEventListener('click',function(e){ if(e.target!==fi) fi.click(); });
+    ['dragenter','dragover'].forEach(function(ev){ z.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); z.classList.add('over'); }); });
+    ['dragleave','dragend'].forEach(function(ev){ z.addEventListener(ev,function(e){ e.preventDefault(); z.classList.remove('over'); }); });
+    z.addEventListener('drop',function(e){
+      e.preventDefault(); e.stopPropagation(); z.classList.remove('over');
+      onFiles(Array.prototype.slice.call((e.dataTransfer&&e.dataTransfer.files)||[]));
+    });
+    return z;
+  }
+
   function renderTracks(){ var p=panels.tracks; p.innerHTML='';
     p.appendChild(el('h3',{class:'ph'},['곡 목록 · WORKS + HOME 배경 공용']));
+
+    // 사이트 폴더 연결 줄
+    var bar=el('div',{class:'crow fbar'});
+    bar.appendChild(btn(DIR?('사이트 폴더 연결됨: '+DIR.name):'사이트 폴더 연결하기','ghost',connectFolder));
+    bar.appendChild(el('span',{class:'fbar-note'},[
+      DIR ? '끌어놓은 파일이 assets/covers · assets/audio 에 바로 복사돼요.'
+          : '먼저 연결하면 파일이 자동 복사돼요. 연결 안 하면 다운로드로 저장됩니다.'
+    ]));
+    p.appendChild(bar);
+
+    // 새 곡 추가 (최상단)
+    var addCard=el('div',{class:'card add-card'});
+    addCard.appendChild(el('h4',{},['새 곡 추가']));
+    addCard.appendChild(dropzone('이미지 + MP3를 여기에 끌어놓으세요 (이미지 파일명이 곡 제목이 됩니다)','image/*,audio/*',function(files){
+      var img=null, aud=null;
+      files.forEach(function(f){ var k=kindOf(f); if(k==='covers'&&!img) img=f; if(k==='audio'&&!aud) aud=f; });
+      if(!img&&!aud){ mark('이미지나 mp3 파일이 아니에요'); return; }
+      var t={title:baseName((img||aud).name), artist:'M2U', mono:'M', c1:'#7698D6', c2:'#182540', cover:'', audio:''};
+      var jobs=[];
+      if(img) jobs.push(storeFile(img,'covers').then(function(pth){ t.cover=pth; }));
+      if(aud) jobs.push(storeFile(aud,'audio').then(function(pth){ t.audio=pth; }));
+      Promise.all(jobs).then(function(){ model.tracks.unshift(t); save(); renderTracks(); });
+    }));
+    addCard.appendChild(btn('+ 빈 곡 추가','add',function(){
+      model.tracks.unshift({title:'',artist:'M2U',mono:'M',c1:'#7698D6',c2:'#182540',cover:'',audio:''}); save(); renderTracks();
+    }));
+    p.appendChild(addCard);
+
     model.tracks.forEach(function(t,i){
-      var c=el('div',{class:'card'});
+      var c=el('div',{class:'card trk'});
+      // 좌측: 커버 미리보기 (정사각형)
+      var pv=el('div',{class:'pv'});
+      if(t.cover){
+        var im=el('img',{src:t.cover,alt:''});
+        im.addEventListener('error',function(){ pv.classList.add('pv-err'); pv.innerHTML='<span>이미지를 찾을 수 없음</span>'; });
+        pv.appendChild(im);
+      } else {
+        pv.classList.add('pv-empty');
+        pv.appendChild(el('span',{},['커버 없음']));
+      }
+      c.appendChild(pv);
+      var body=el('div',{class:'trk-body'});
       var r1=el('div',{class:'crow'});
       r1.appendChild(el('span',{class:'idx'},['#'+(i+1)]));
       r1.appendChild(input(t.title,function(v){t.title=v;save();},'곡 제목'));
@@ -107,19 +196,37 @@
       r1.appendChild(btn('↑','mini',function(){move(model.tracks,i,-1);renderTracks();}));
       r1.appendChild(btn('↓','mini',function(){move(model.tracks,i,1);renderTracks();}));
       r1.appendChild(btn('삭제','mini del',function(){model.tracks.splice(i,1);save();renderTracks();}));
-      c.appendChild(r1);
+      body.appendChild(r1);
+
+      // 끌어놓기 칸 (커버 / mp3)
+      var rz=el('div',{class:'crow'});
+      var zc=el('div',{class:'dz-wrap'});
+      zc.appendChild(dropzone(t.cover?('커버 교체 — '+t.cover.split('/').pop()):'커버 이미지 끌어놓기','image/*',function(files){
+        var img=null; files.forEach(function(f){ if(kindOf(f)==='covers'&&!img) img=f; });
+        if(!img){ mark('이미지 파일이 아니에요'); return; }
+        storeFile(img,'covers').then(function(pth){ t.cover=pth; save(); renderTracks(); });
+      }));
+      var za=el('div',{class:'dz-wrap'});
+      za.appendChild(dropzone(t.audio?('MP3 교체 — '+t.audio.split('/').pop()):'MP3 끌어놓기','audio/*',function(files){
+        var aud=null; files.forEach(function(f){ if(kindOf(f)==='audio'&&!aud) aud=f; });
+        if(!aud){ mark('오디오 파일이 아니에요'); return; }
+        storeFile(aud,'audio').then(function(pth){ t.audio=pth; save(); renderTracks(); });
+      }));
+      rz.appendChild(zc); rz.appendChild(za);
+      body.appendChild(rz);
+
       var r2=el('div',{class:'crow'});
       r2.appendChild(field('커버 이미지 경로', input(t.cover,function(v){t.cover=v;save();},'assets/covers/x.jpg (비우면 색 타일)')));
       r2.appendChild(field('MP3 경로', input(t.audio,function(v){t.audio=v;save();},'assets/audio/x.mp3 (비우면 재생 대기)')));
-      c.appendChild(r2);
+      body.appendChild(r2);
       var r3=el('div',{class:'crow'});
       r3.appendChild(field('자동커버 글자', input(t.mono,function(v){t.mono=v;save();},'M')));
       r3.appendChild(field('색 1', input(t.c1||'#7698D6',function(v){t.c1=v;save();},'#7698D6','color')));
       r3.appendChild(field('색 2', input(t.c2||'#182540',function(v){t.c2=v;save();},'#182540','color')));
-      c.appendChild(r3);
+      body.appendChild(r3);
+      c.appendChild(body);
       p.appendChild(c);
     });
-    p.appendChild(btn('+ 곡 추가','add',function(){ model.tracks.push({title:'',artist:'M2U',mono:'M',c1:'#7698D6',c2:'#182540',cover:'',audio:''}); save(); renderTracks(); }));
   }
   function renderAll(){ renderGeneral();renderText();renderTimeline();renderPartners();renderTracks(); }
 

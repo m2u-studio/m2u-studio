@@ -256,7 +256,7 @@ window.SITE = {
   "tracks": [
     {
       "title": "Mezereon",
-      "artist": "M2U feat. Guriri",
+      "artist": "M2U X Guriri",
       "mono": " ",
       "c1": "#7698D6",
       "c2": "#182540",
@@ -265,30 +265,39 @@ window.SITE = {
     },
     {
       "title": "Marigold",
-      "artist": "M2U",
+      "artist": "Feat. Guriri",
       "mono": " ",
-      "c1": "#91aee6",
-      "c2": "#22304f",
-      "cover": "",
-      "audio": ""
+      "c1": "#7698d6",
+      "c2": "#182540",
+      "cover": "assets/covers/Marigold_[from_Deemo].png",
+      "audio": "assets/audio/Marigold_(Feat._Guriri).mp3"
     },
     {
       "title": "Myosotis",
-      "artist": "M2U",
+      "artist": "Feat. Guriri & Lucy",
       "mono": " ",
       "c1": "#6d8fd0",
       "c2": "#141d33",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Myosotis_[from_Deemo].png",
+      "audio": "assets/audio/Myosotis_(Feat._Guriri_&_Lucy).mp3"
     },
     {
       "title": "Magnolia",
-      "artist": "M2U feat. Guriri",
+      "artist": "Feat. Guriri",
       "mono": " ",
       "c1": "#8fabe0",
       "c2": "#1c2947",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Magnolia_[from_Deemo].webp",
+      "audio": "assets/audio/Magnolia_(Feat._Guriri).mp3"
+    },
+    {
+      "title": "MECONOPSIS",
+      "artist": "Ninomae Ina'nis",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/MECONOPSIS_-_Ninomae_Inanis.jpg",
+      "audio": "assets/audio/Meconopsis.mp3"
     },
     {
       "title": "Masquerade",
@@ -296,8 +305,62 @@ window.SITE = {
       "mono": " ",
       "c1": "#5a76b8",
       "c2": "#101827",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Masquerade_[from_CYTUS].webp",
+      "audio": "assets/audio/Masquerade.mp3"
+    },
+    {
+      "title": "낙뢰천(落雷天 / Thunderclouds) [from LaTale]",
+      "artist": "M2U",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/LaTale_Adventurers_Hall_Lightning_Heaven.png",
+      "audio": "assets/audio/LaTale_Lightning_Heaven.mp3"
+    },
+    {
+      "title": "happy Day Walk Around [from LaTale]",
+      "artist": "M2U",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/LaTale_Big_apple.png",
+      "audio": "assets/audio/Happy_Day_Walk_Around.mp3"
+    },
+    {
+      "title": "Raindrop Flower [Maple Story]",
+      "artist": "M2U",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/maple_ereve_forest.jpg",
+      "audio": "assets/audio/maple_Ereve_Raindrop_Flower.mp3"
+    },
+    {
+      "title": "Queens Garden [Maple Story]",
+      "artist": "M2U",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/maple_ereve_queensgarden.jpg",
+      "audio": "assets/audio/maple_Ereve_Queens_Garden.mp3"
+    },
+    {
+      "title": "Mabinogi - Soul's Orgel",
+      "artist": "M2U",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/Mabinogi_Logo.jpg",
+      "audio": "assets/audio/Mabinogi_-_Souls_Orgel.mp3"
+    },
+    {
+      "title": "Mabinogi - Prince of Partholon",
+      "artist": "M2U",
+      "mono": " ",
+      "c1": "#7698D6",
+      "c2": "#182540",
+      "cover": "assets/covers/Mabinogi_-_Prince_of_Partholon.jpg",
+      "audio": "assets/audio/Mabinogi_-_Prince_of_Partholon.mp3"
     },
     {
       "title": "Nightmare",
@@ -305,8 +368,8 @@ window.SITE = {
       "mono": " ",
       "c1": "#3f5691",
       "c2": "#0c111d",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Nightmare_[from_DJMAX].webp",
+      "audio": "assets/audio/Nightmare.mp3"
     },
     {
       "title": "BlythE",
@@ -314,8 +377,8 @@ window.SITE = {
       "mono": " ",
       "c1": "#7698D6",
       "c2": "#1e2b49",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Blythe_[from_DJMAX].jpg",
+      "audio": "assets/audio/BlythE.mp3"
     },
     {
       "title": "Seeker",
@@ -323,8 +386,8 @@ window.SITE = {
       "mono": " ",
       "c1": "#6485c8",
       "c2": "#131c30",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Seeker_[from_DJMAX].jpg",
+      "audio": "assets/audio/Seeker.mp3"
     },
     {
       "title": "Phoenix",
@@ -332,8 +395,8 @@ window.SITE = {
       "mono": " ",
       "c1": "#88a4de",
       "c2": "#151515",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Phoenix.jpg",
+      "audio": "assets/audio/Phoenix.mp3"
     },
     {
       "title": "Ayla",
@@ -341,8 +404,8 @@ window.SITE = {
       "mono": " ",
       "c1": "#5c7cc2",
       "c2": "#111a2c",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Ayla.jpg",
+      "audio": "assets/audio/Ayla.mp3"
     },
     {
       "title": "Music 2 You",
@@ -350,8 +413,8 @@ window.SITE = {
       "mono": " ",
       "c1": "#7093d4",
       "c2": "#17223b",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Music_2_You.jpg",
+      "audio": "assets/audio/Music_To_You.mp3"
     },
     {
       "title": "Gravity",
@@ -359,17 +422,17 @@ window.SITE = {
       "mono": " ",
       "c1": "#5a76b8",
       "c2": "#0f1725",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Gravity_[from_Rayark].jpg",
+      "audio": "assets/audio/Gravity.mp3"
     },
     {
-      "title": "Howling",
+      "title": "H.o.w.ling",
       "artist": "M2U",
       "mono": " ",
       "c1": "#6d8fd0",
       "c2": "#141e34",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/H.O.w.ling.png",
+      "audio": "assets/audio/H.o.w.ling.mp3"
     },
     {
       "title": "Airwave",
@@ -377,17 +440,17 @@ window.SITE = {
       "mono": " ",
       "c1": "#82a0dd",
       "c2": "#1a2843",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Airwave_[from_DJMAX].jpg",
+      "audio": "assets/audio/Airwave.mp3"
     },
     {
       "title": "Frontline",
-      "artist": "M2U",
+      "artist": "(Feat.Guriri)",
       "mono": " ",
       "c1": "#4f6bab",
       "c2": "#0e1622",
-      "cover": "",
-      "audio": ""
+      "cover": "assets/covers/Frontline.jpg",
+      "audio": "assets/audio/Girls_Frontline_-_Frontline.mp3"
     }
   ]
 };

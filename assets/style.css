@@ -60,9 +60,10 @@ main{flex:1 0 auto}
 .page-title{font-family:"Helvetica Neue","Pretendard",-apple-system,system-ui,sans-serif;
   font-weight:800;letter-spacing:-.04em;line-height:.92;text-transform:uppercase;
   font-size:clamp(46px,9vw,124px);display:inline-flex;flex-wrap:wrap}
-.page-title .ch{display:inline-block;animation:chWave 2.6s ease-in-out infinite;will-change:transform}
-@keyframes chWave{0%,100%{transform:translateY(0)}50%{transform:translateY(-.12em)}}
-@media(prefers-reduced-motion:reduce){.page-title .ch{animation:none}}
+.page-title .ch-w{display:inline-block;overflow:hidden;vertical-align:top;height:1.12em;line-height:1.12}
+.page-title .ch{display:block;will-change:transform,opacity}
+.page-title .ch i{display:block;font-style:normal;line-height:1.12;height:1.12em}
+@media(prefers-reduced-motion:reduce){.page-title .ch{transition:none!important;opacity:1!important}}
 
 /* ================= HOME ================= */
 .home{position:relative;flex:1 0 auto;display:flex;align-items:center;justify-content:center;
@@ -221,6 +222,11 @@ main{flex:1 0 auto}
   .foot-top{flex-direction:column}.foot-right{text-align:left}
   .foot-bottom{flex-direction:column;align-items:flex-start}
   .sec{padding-top:80px;padding-bottom:80px}
+  /* 모바일에서는 앨범 커버를 2열로 */
+  .wgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+  .wcover .m{font-size:44px;left:12px;top:8px}
+  .wtitle{font-size:14px}
+  .wartist{font-size:11px}
   .home-tile{width:280px;height:280px}
   .home-tile .m{font-size:84px}
 }

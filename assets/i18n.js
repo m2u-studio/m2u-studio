@@ -37,7 +37,19 @@ window.I18N = {
 (function(){
   function get(){ try{ return localStorage.getItem("m2u_lang"); }catch(e){ return null; } }
   function saveL(l){ try{ localStorage.setItem("m2u_lang", l); }catch(e){} }
-  window.M2U_LANG = get() || "ko";
+  // 저장된 선택이 없으면 브라우저 언어로 자동 선택 (한/일/중 아니면 영어)
+  function detect(){
+    var list=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||"en"];
+    for(var i=0;i<list.length;i++){
+      var l=String(list[i]||"").toLowerCase();
+      if(l.indexOf("ko")===0) return "ko";
+      if(l.indexOf("ja")===0) return "ja";
+      if(l.indexOf("zh")===0) return "zh";
+      if(l.indexOf("en")===0) return "en";
+    }
+    return "en";
+  }
+  window.M2U_LANG = get() || detect();
   function apply(l){
     var d=I18N[l]; if(!d) return;
     window.M2U_LANG=l; document.documentElement.lang=l; saveL(l);
