@@ -15,7 +15,22 @@
   }
   function setCount(n){
     var d=dict(), l=window.M2U_LANG;
-    if(countEl) countEl.textContent = n + (l==='en'?' ':'') + d.u_unit;
+    if(!countEl) return;
+    countEl.textContent = n + (l==='en'?' ':'') + d.u_unit;
+    var pf=window.M2U_PARTNER||'';
+    if(pf){                                   // 선택된 회사 이름을 칩으로 표시 (클릭하면 해제)
+      var chip=document.createElement('button');
+      chip.type='button'; chip.className='pchip';
+      chip.appendChild(document.createTextNode(pf));
+      var x=document.createElement('span'); x.className='pchip-x'; x.textContent='\u00D7';
+      chip.appendChild(x);
+      chip.addEventListener('click',function(){
+        window.M2U_PARTNER='';
+        if(window.M2U_syncPartnerCards) window.M2U_syncPartnerCards('');
+        document.dispatchEvent(new CustomEvent('partnerfilter',{detail:{partner:''}}));
+      });
+      countEl.appendChild(chip);
+    }
   }
   function render(list){
     grid.innerHTML='';
