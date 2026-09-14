@@ -14,6 +14,8 @@
     return m;
   }
   normalize(model);
+  model.tracks.forEach(function(t){ if(!Array.isArray(t.partners)) t.partners=[]; });
+  var sel={};                 // 체크된 곡 인덱스
 
   var LANGS=[['ko','한'],['en','EN'],['ja','日'],['zh','中']];
   var statusEl;
@@ -148,6 +150,67 @@
   function renderTracks(){ var p=panels.tracks; p.innerHTML='';
     p.appendChild(el('h3',{class:'ph'},['곡 목록 · WORKS + HOME 배경 공용']));
 
+    // 일괄 적용 바
+    var keys=Object.keys(sel).filter(function(k){ return sel[k]; });
+    var bulk=el('div',{class:'bulk'+(keys.length?' act':'')});
+    var cnt=el('span',{class:'bulk-n'},[keys.length? (keys.length+'곡 선택됨') : '곡을 선택하면 일괄 적용할 수 있어요']);
+    bulk.appendChild(cnt);
+    var pick=el('select',{class:'bulk-sel'});
+    pick.appendChild(el('option',{value:''},['회사 이름 선택…']));
+    (model.partners||[]).forEach(function(p){
+      if(!p.name) return;
+      pick.appendChild(el('option',{value:p.name},[p.name]));
+    });
+    bulk.appendChild(pick);
+    function chosen(){ return Object.keys(sel).filter(function(k){return sel[k];}).map(Number).sort(function(a,b){return a-b;}); }
+    bulk.appendChild(btn('회사 적용','mini',function(){
+      var name=pick.value, idx=chosen();
+      if(!name){ mark('회사를 먼저 고르세요'); return; }
+      if(!idx.length){ mark('곡을 먼저 선택하세요'); return; }
+      idx.forEach(function(i){
+        var t=model.tracks[i]; if(!Array.isArray(t.partners)) t.partners=[];
+        if(t.partners.indexOf(name)<0) t.partners.push(name);
+      });
+      save(); renderTracks();
+    }));
+    bulk.appendChild(btn('회사 해제','mini',function(){
+      var name=pick.value, idx=chosen();
+      if(!name){ mark('회사를 먼저 고르세요'); return; }
+      idx.forEach(function(i){
+        var t=model.tracks[i]; if(!Array.isArray(t.partners)) return;
+        t.partners=t.partners.filter(function(x){ return x!==name; });
+      });
+      save(); renderTracks();
+    }));
+    bulk.appendChild(btn('맨 위로','mini',function(){
+      var idx=chosen(); if(!idx.length) return;
+      var picked=idx.map(function(i){ return model.tracks[i]; });
+      var rest=model.tracks.filter(function(_,i){ return idx.indexOf(i)<0; });
+      model.tracks=picked.concat(rest);
+      sel={}; picked.forEach(function(_,i){ sel[i]=true; });
+      save(); renderTracks();
+    }));
+    bulk.appendChild(btn('맨 아래로','mini',function(){
+      var idx=chosen(); if(!idx.length) return;
+      var picked=idx.map(function(i){ return model.tracks[i]; });
+      var rest=model.tracks.filter(function(_,i){ return idx.indexOf(i)<0; });
+      model.tracks=rest.concat(picked);
+      sel={}; picked.forEach(function(_,i){ sel[rest.length+i]=true; });
+      save(); renderTracks();
+    }));
+    bulk.appendChild(btn('삭제','mini del',function(){
+      var idx=chosen(); if(!idx.length) return;
+      if(!confirm(idx.length+'곡을 삭제할까요?')) return;
+      model.tracks=model.tracks.filter(function(_,i){ return idx.indexOf(i)<0; });
+      sel={}; save(); renderTracks();
+    }));
+    bulk.appendChild(btn(keys.length?'선택 해제':'전체 선택','mini',function(){
+      if(keys.length){ sel={}; }
+      else { model.tracks.forEach(function(_,i){ sel[i]=true; }); }
+      renderTracks();
+    }));
+    p.appendChild(bulk);
+
     // 사이트 폴더 연결 줄
     var bar=el('div',{class:'crow fbar'});
     bar.appendChild(btn(DIR?('사이트 폴더 연결됨: '+DIR.name):'사이트 폴더 연결하기','ghost',connectFolder));
@@ -176,7 +239,14 @@
     p.appendChild(addCard);
 
     model.tracks.forEach(function(t,i){
-      var c=el('div',{class:'card trk'});
+      var c=el('div',{class:'card trk'+(sel[i]?' picked':'')});
+      // 맨 왼쪽: 선택 체크박스
+      var cbw=el('div',{class:'trk-cbw'});
+      var cb=el('input',{type:'checkbox',class:'trk-cb'});
+      cb.checked=!!sel[i];
+      cb.addEventListener('change',function(){ sel[i]=cb.checked; renderTracks(); });
+      cbw.appendChild(cb);
+      c.appendChild(cbw);
       // 좌측: 커버 미리보기 (정사각형)
       var pv=el('div',{class:'pv'});
       if(t.cover){
@@ -224,6 +294,15 @@
       r3.appendChild(field('색 1', input(t.c1||'#7698D6',function(v){t.c1=v;save();},'#7698D6','color')));
       r3.appendChild(field('색 2', input(t.c2||'#182540',function(v){t.c2=v;save();},'#182540','color')));
       body.appendChild(r3);
+      var tags=el('div',{class:'ptags'});
+      tags.appendChild(el('span',{class:'ptags-l'},['소속 회사']));
+      if(!t.partners || !t.partners.length){ tags.appendChild(el('span',{class:'ptag-none'},['없음'])); }
+      else t.partners.forEach(function(nm,pi){
+        var tag=el('span',{class:'ptag'},[nm]);
+        tag.appendChild(btn('×','ptag-x',function(){ t.partners.splice(pi,1); save(); renderTracks(); }));
+        tags.appendChild(tag);
+      });
+      body.appendChild(tags);
       c.appendChild(body);
       p.appendChild(c);
     });

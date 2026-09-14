@@ -33,11 +33,18 @@
   }
   function current(){
     var q=(search&&search.value||'').trim().toLowerCase();
-    return !q?TRACKS:TRACKS.filter(function(t){return t.title.toLowerCase().indexOf(q)>-1;});
+    var list=TRACKS;
+    var pf=window.M2U_PARTNER||'';                     // 선택된 파트너사
+    if(pf) list=list.filter(function(t){
+      return Array.isArray(t.partners) && t.partners.indexOf(pf)>-1;
+    });
+    if(q) list=list.filter(function(t){ return t.title.toLowerCase().indexOf(q)>-1; });
+    return list;
   }
   function filter(){ render(current()); }
   if(search) search.addEventListener('input',filter);
   document.addEventListener('langchange',function(){ render(current()); });
+  document.addEventListener('partnerfilter',function(){ render(current()); });
   render(TRACKS);
 
   /* ---------- modal + player ---------- */

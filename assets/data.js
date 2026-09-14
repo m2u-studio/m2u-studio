@@ -251,6 +251,14 @@ window.SITE = {
     {
       "name": "LinkedTune Culture Communication",
       "logo": ""
+    },
+    {
+      "name": "ACTOZ SOFT CO., LTD.",
+      "logo": ""
+    },
+    {
+      "name": "Sunborn Network Technology Co., Ltd.",
+      "logo": ""
     }
   ],
   "tracks": [
@@ -261,16 +269,22 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/Mezereon_cover.png",
-      "audio": "assets/audio/Mezereon_preview(128).mp3"
+      "audio": "assets/audio/Mezereon_preview(128).mp3",
+      "partners": [
+        "Rayark inc."
+      ]
     },
     {
       "title": "Marigold",
       "artist": "Feat. Guriri",
       "mono": " ",
-      "c1": "#7698d6",
-      "c2": "#182540",
+      "c1": "#ffe58d",
+      "c2": "#d06a0c",
       "cover": "assets/covers/Marigold_[from_Deemo].png",
-      "audio": "assets/audio/Marigold_(Feat._Guriri).mp3"
+      "audio": "assets/audio/Marigold_(Feat._Guriri).mp3",
+      "partners": [
+        "Rayark inc."
+      ]
     },
     {
       "title": "Myosotis",
@@ -279,7 +293,10 @@ window.SITE = {
       "c1": "#6d8fd0",
       "c2": "#141d33",
       "cover": "assets/covers/Myosotis_[from_Deemo].png",
-      "audio": "assets/audio/Myosotis_(Feat._Guriri_&_Lucy).mp3"
+      "audio": "assets/audio/Myosotis_(Feat._Guriri_&_Lucy).mp3",
+      "partners": [
+        "Rayark inc."
+      ]
     },
     {
       "title": "Magnolia",
@@ -288,7 +305,10 @@ window.SITE = {
       "c1": "#8fabe0",
       "c2": "#1c2947",
       "cover": "assets/covers/Magnolia_[from_Deemo].webp",
-      "audio": "assets/audio/Magnolia_(Feat._Guriri).mp3"
+      "audio": "assets/audio/Magnolia_(Feat._Guriri).mp3",
+      "partners": [
+        "Rayark inc."
+      ]
     },
     {
       "title": "MECONOPSIS",
@@ -297,7 +317,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/MECONOPSIS_-_Ninomae_Inanis.jpg",
-      "audio": "assets/audio/Meconopsis.mp3"
+      "audio": "assets/audio/Meconopsis.mp3",
+      "partners": [
+        "COVER Corporation"
+      ]
     },
     {
       "title": "Masquerade",
@@ -306,7 +329,10 @@ window.SITE = {
       "c1": "#5a76b8",
       "c2": "#101827",
       "cover": "assets/covers/Masquerade_[from_CYTUS].webp",
-      "audio": "assets/audio/Masquerade.mp3"
+      "audio": "assets/audio/Masquerade.mp3",
+      "partners": [
+        "Rayark inc."
+      ]
     },
     {
       "title": "낙뢰천(落雷天 / Thunderclouds) [from LaTale]",
@@ -315,7 +341,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/LaTale_Adventurers_Hall_Lightning_Heaven.png",
-      "audio": "assets/audio/LaTale_Lightning_Heaven.mp3"
+      "audio": "assets/audio/LaTale_Lightning_Heaven.mp3",
+      "partners": [
+        "ACTOZ SOFT CO., LTD."
+      ]
     },
     {
       "title": "happy Day Walk Around [from LaTale]",
@@ -324,7 +353,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/LaTale_Big_apple.png",
-      "audio": "assets/audio/Happy_Day_Walk_Around.mp3"
+      "audio": "assets/audio/Happy_Day_Walk_Around.mp3",
+      "partners": [
+        "ACTOZ SOFT CO., LTD."
+      ]
     },
     {
       "title": "Raindrop Flower [Maple Story]",
@@ -333,7 +365,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/maple_ereve_forest.jpg",
-      "audio": "assets/audio/maple_Ereve_Raindrop_Flower.mp3"
+      "audio": "assets/audio/maple_Ereve_Raindrop_Flower.mp3",
+      "partners": [
+        "NEXON Korea Corporation"
+      ]
     },
     {
       "title": "Queens Garden [Maple Story]",
@@ -342,7 +377,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/maple_ereve_queensgarden.jpg",
-      "audio": "assets/audio/maple_Ereve_Queens_Garden.mp3"
+      "audio": "assets/audio/maple_Ereve_Queens_Garden.mp3",
+      "partners": [
+        "NEXON Korea Corporation"
+      ]
     },
     {
       "title": "Mabinogi - Soul's Orgel",
@@ -351,7 +389,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/Mabinogi_Logo.jpg",
-      "audio": "assets/audio/Mabinogi_-_Souls_Orgel.mp3"
+      "audio": "assets/audio/Mabinogi_-_Souls_Orgel.mp3",
+      "partners": [
+        "NEXON Korea Corporation"
+      ]
     },
     {
       "title": "Mabinogi - Prince of Partholon",
@@ -360,7 +401,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#182540",
       "cover": "assets/covers/Mabinogi_-_Prince_of_Partholon.jpg",
-      "audio": "assets/audio/Mabinogi_-_Prince_of_Partholon.mp3"
+      "audio": "assets/audio/Mabinogi_-_Prince_of_Partholon.mp3",
+      "partners": [
+        "NEXON Korea Corporation"
+      ]
     },
     {
       "title": "Nightmare",
@@ -369,7 +413,10 @@ window.SITE = {
       "c1": "#3f5691",
       "c2": "#0c111d",
       "cover": "assets/covers/Nightmare_[from_DJMAX].webp",
-      "audio": "assets/audio/Nightmare.mp3"
+      "audio": "assets/audio/Nightmare.mp3",
+      "partners": [
+        "NEOWIZ Corporation"
+      ]
     },
     {
       "title": "BlythE",
@@ -378,7 +425,10 @@ window.SITE = {
       "c1": "#7698D6",
       "c2": "#1e2b49",
       "cover": "assets/covers/Blythe_[from_DJMAX].jpg",
-      "audio": "assets/audio/BlythE.mp3"
+      "audio": "assets/audio/BlythE.mp3",
+      "partners": [
+        "NEOWIZ Corporation"
+      ]
     },
     {
       "title": "Seeker",
@@ -387,7 +437,10 @@ window.SITE = {
       "c1": "#6485c8",
       "c2": "#131c30",
       "cover": "assets/covers/Seeker_[from_DJMAX].jpg",
-      "audio": "assets/audio/Seeker.mp3"
+      "audio": "assets/audio/Seeker.mp3",
+      "partners": [
+        "NEOWIZ Corporation"
+      ]
     },
     {
       "title": "Phoenix",
@@ -396,7 +449,8 @@ window.SITE = {
       "c1": "#88a4de",
       "c2": "#151515",
       "cover": "assets/covers/Phoenix.jpg",
-      "audio": "assets/audio/Phoenix.mp3"
+      "audio": "assets/audio/Phoenix.mp3",
+      "partners": []
     },
     {
       "title": "Ayla",
@@ -405,7 +459,8 @@ window.SITE = {
       "c1": "#5c7cc2",
       "c2": "#111a2c",
       "cover": "assets/covers/Ayla.jpg",
-      "audio": "assets/audio/Ayla.mp3"
+      "audio": "assets/audio/Ayla.mp3",
+      "partners": []
     },
     {
       "title": "Music 2 You",
@@ -414,7 +469,8 @@ window.SITE = {
       "c1": "#7093d4",
       "c2": "#17223b",
       "cover": "assets/covers/Music_2_You.jpg",
-      "audio": "assets/audio/Music_To_You.mp3"
+      "audio": "assets/audio/Music_To_You.mp3",
+      "partners": []
     },
     {
       "title": "Gravity",
@@ -423,7 +479,10 @@ window.SITE = {
       "c1": "#5a76b8",
       "c2": "#0f1725",
       "cover": "assets/covers/Gravity_[from_Rayark].jpg",
-      "audio": "assets/audio/Gravity.mp3"
+      "audio": "assets/audio/Gravity.mp3",
+      "partners": [
+        "Rayark inc."
+      ]
     },
     {
       "title": "H.o.w.ling",
@@ -432,7 +491,8 @@ window.SITE = {
       "c1": "#6d8fd0",
       "c2": "#141e34",
       "cover": "assets/covers/H.O.w.ling.png",
-      "audio": "assets/audio/H.o.w.ling.mp3"
+      "audio": "assets/audio/H.o.w.ling.mp3",
+      "partners": []
     },
     {
       "title": "Airwave",
@@ -441,7 +501,10 @@ window.SITE = {
       "c1": "#82a0dd",
       "c2": "#1a2843",
       "cover": "assets/covers/Airwave_[from_DJMAX].jpg",
-      "audio": "assets/audio/Airwave.mp3"
+      "audio": "assets/audio/Airwave.mp3",
+      "partners": [
+        "NEOWIZ Corporation"
+      ]
     },
     {
       "title": "Frontline",
@@ -450,7 +513,11 @@ window.SITE = {
       "c1": "#4f6bab",
       "c2": "#0e1622",
       "cover": "assets/covers/Frontline.jpg",
-      "audio": "assets/audio/Girls_Frontline_-_Frontline.mp3"
+      "audio": "assets/audio/Girls_Frontline_-_Frontline.mp3",
+      "partners": [
+        "Sunborn Network Technology Co., Ltd.",
+        "X.D. Global Limited"
+      ]
     }
   ]
 };
