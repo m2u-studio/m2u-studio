@@ -23,7 +23,7 @@
       (SITE.partners||[]).forEach(function(p){
         var card=document.createElement('div'); card.className='pcard';
         card.setAttribute('data-partner', p.name||'');
-        if(p.logo) card.innerHTML='<img src="'+esc(p.logo)+'" alt="'+esc(p.name)+'">';
+        if(p.logo) card.innerHTML='<img src="'+esc(p.logo)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async">';
         else card.innerHTML='<span class="pname">'+esc(p.name)+'</span>';
         pg.appendChild(card);
       });

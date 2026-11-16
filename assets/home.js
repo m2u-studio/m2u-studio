@@ -5,7 +5,7 @@
 
   function tile(t){
     var d=document.createElement('div'); d.className='home-tile';
-    if(t.cover){ var im=new Image(); im.src=t.cover; im.alt=''; d.appendChild(im); }
+    if(t.cover){ var im=new Image(); im.loading='lazy'; im.decoding='async'; im.src=t.cover; im.alt=''; d.appendChild(im); }
     else d.innerHTML='<div class="g" style="--c1:'+t.c1+';--c2:'+t.c2+'"></div><div class="m">'+(t.mono||'M')+'</div>';
     return d;
   }

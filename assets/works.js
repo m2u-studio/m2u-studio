@@ -10,27 +10,12 @@
   var CJK=/[\u3000-\u303f\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff65-\uff9f]/;
   function ck(str){ return CJK.test(str||'')?' cjk':''; }
   function coverInner(t){
-    if(t.cover) return '<img src="'+t.cover+'" alt="">';
+    if(t.cover) return '<img src="'+t.cover+'" alt="" loading="lazy" decoding="async">';
     return '<div class="g" style="--c1:'+t.c1+';--c2:'+t.c2+'"></div><div class="m">'+(t.mono||'M')+'</div>';
   }
   function setCount(n){
     var d=dict(), l=window.M2U_LANG;
-    if(!countEl) return;
-    countEl.textContent = n + (l==='en'?' ':'') + d.u_unit;
-    var pf=window.M2U_PARTNER||'';
-    if(pf){                                   // 선택된 회사 이름을 칩으로 표시 (클릭하면 해제)
-      var chip=document.createElement('button');
-      chip.type='button'; chip.className='pchip';
-      chip.appendChild(document.createTextNode(pf));
-      var x=document.createElement('span'); x.className='pchip-x'; x.textContent='\u00D7';
-      chip.appendChild(x);
-      chip.addEventListener('click',function(){
-        window.M2U_PARTNER='';
-        if(window.M2U_syncPartnerCards) window.M2U_syncPartnerCards('');
-        document.dispatchEvent(new CustomEvent('partnerfilter',{detail:{partner:''}}));
-      });
-      countEl.appendChild(chip);
-    }
+    if(countEl) countEl.textContent = n + (l==='en'?' ':'') + d.u_unit;
   }
   function render(list){
     grid.innerHTML='';
@@ -71,7 +56,7 @@
   function openModal(i){
     var t=TRACKS[i];
     modal.querySelector('.m-cover').innerHTML = t.cover
-      ? '<img src="'+t.cover+'" alt="">'
+      ? '<img src="'+t.cover+'" alt="" decoding="async">'
       : '<div class="g" style="background:linear-gradient(140deg,'+t.c1+','+t.c2+')"></div><div class="m">'+(t.mono||'M')+'</div>';
     var mt=modal.querySelector('.m-title'), ma=modal.querySelector('.m-artist'),
         pt=modal.querySelector('.player .pt'), pa=modal.querySelector('.player .pa');
